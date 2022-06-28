@@ -28,7 +28,21 @@ const createTodo = (request, response) => {
   });
 };
 
+//delete todo
+const deleteTodo = (request, response) => {
+  Todo.remove({
+    _id: request.params.id,
+  })
+    .then(() => {
+      return response.status(200).send({
+        message: "Todo deleted",
+      });
+    })
+    .catch((error) => response.status(500).send(error));
+};
+
 module.exports = {
   allTodos,
   createTodo,
+  deleteTodo,
 };
