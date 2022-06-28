@@ -41,8 +41,27 @@ const deleteTodo = (request, response) => {
     .catch((error) => response.status(500).send(error));
 };
 
+//edit todo
+const editTodo = (request, response) => {
+  Todo.findByIdAndUpdate(
+    { _id: request.params.id },
+    request.body,
+    {
+      new: true,
+    },
+    (error, todo) => {
+      if (error) {
+        return response.status(500).send(error);
+      } else {
+        return response.status(200).send(todo);
+      }
+    },
+  );
+};
+
 module.exports = {
   allTodos,
   createTodo,
   deleteTodo,
+  editTodo,
 };

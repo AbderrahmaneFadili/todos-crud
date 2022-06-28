@@ -3,6 +3,7 @@ const {
   allTodos,
   createTodo,
   deleteTodo,
+  editTodo,
 } = require("../controllers/Todo.controllers");
 
 router.get("/", (request, response) => {
@@ -14,5 +15,6 @@ router.get("/", (request, response) => {
 router.get("/todos", allTodos);
 router.post("/todos", createTodo);
 router.delete("/todos/:id", deleteTodo);
+router.put("/todos/:id", editTodo);
 
 module.exports = router;
